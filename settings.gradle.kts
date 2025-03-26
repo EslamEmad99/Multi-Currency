@@ -21,3 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Multi Currency"
 include(":app")
+include(":domain")
+include(":data")
