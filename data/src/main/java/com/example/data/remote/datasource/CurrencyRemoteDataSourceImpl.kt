@@ -3,8 +3,9 @@ package com.example.data.remote.datasource
 import com.example.data.datasource.remote.CurrencyRemoteDataSource
 import com.example.data.remote.endpoints.CurrencyApiService
 import com.example.data.remote.util.ApiExceptions
-import com.example.data.remote.util.ExchangeRateMapper
+import com.example.data.remote.util.RemoteExchangeRateMapper
 import com.example.data.remote.util.safeApiCall
+import com.example.data.util.Constants.CURRENCY_APP_DATE_FORMAT_PATTERN
 import com.example.domain.model.ExchangeRate
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -23,7 +24,7 @@ class CurrencyRemoteDataSourceImpl @Inject constructor(
         }.mapCatching { responseDto ->
             if (!responseDto.success) throw ApiExceptions.EmptyResponseException
 
-            ExchangeRateMapper.mapFromDto(responseDto)
+            RemoteExchangeRateMapper.mapFromDto(responseDto)
         }
     }
 
@@ -37,14 +38,14 @@ class CurrencyRemoteDataSourceImpl @Inject constructor(
         return safeApiCall {
             apiService.getHistoricalRates(date, from, to, accessKey)
         }.mapCatching { responseDto ->
-            if (!responseDto.success) throw ApiExceptions.EmptyResponseException
+            if (!responseDto.success) return Result.failure(ApiExceptions.EmptyResponseException)
 
-            ExchangeRateMapper.mapFromDto(responseDto, from, to)
+            RemoteExchangeRateMapper.mapFromDto(responseDto, from, to)
         }
     }
 
     private fun convertTimestampToDate(timestamp: Long): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val sdf = SimpleDateFormat(CURRENCY_APP_DATE_FORMAT_PATTERN, Locale.getDefault())
         sdf.timeZone = TimeZone.getTimeZone("UTC")
         return sdf.format(Date(timestamp * 1000))
     }

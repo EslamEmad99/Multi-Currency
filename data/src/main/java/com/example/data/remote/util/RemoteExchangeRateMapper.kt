@@ -3,7 +3,7 @@ package com.example.data.remote.util
 import com.example.data.remote.model.ExchangeRatesResponse
 import com.example.domain.model.ExchangeRate
 
-object ExchangeRateMapper {
+object RemoteExchangeRateMapper {
     fun mapFromDto(response: ExchangeRatesResponse): List<ExchangeRate> {
         return response.rates.map { (currency, rate) ->
             ExchangeRate(
