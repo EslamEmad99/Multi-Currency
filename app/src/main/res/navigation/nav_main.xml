@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/changeCurrencyFragment">
+
+    <fragment
+        android:id="@+id/changeCurrencyFragment"
+        android:name="com.example.multicurrency.changecurrency.ChangeCurrencyFragment"
+        android:label="fragment_change_currency"
+        tools:layout="@layout/fragment_change_currency">
+        <action
+            android:id="@+id/action_changeCurrencyFragment_to_currencyHistoryFragment"
+            app:destination="@id/currencyHistoryFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/currencyHistoryFragment"
+        android:name="com.example.multicurrency.history.CurrencyHistoryFragment"
+        android:label="fragment_currency_history"
+        tools:layout="@layout/fragment_currency_history">
+        <argument
+            android:name="from"
+            app:argType="string" />
+        <argument
+            android:name="to"
+            app:argType="string" />
+    </fragment>
+</navigation>
