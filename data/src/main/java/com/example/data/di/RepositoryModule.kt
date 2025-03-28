@@ -1,4 +1,4 @@
-package com.example.data.di.modules
+package com.example.data.di
 
 import com.example.data.datasource.local.CurrencyLocalDataSource
 import com.example.data.datasource.remote.CurrencyRemoteDataSource
