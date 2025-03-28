@@ -1,14 +1,9 @@
-/**
- * Using a version catalog allows us to centralize dependency management.
- * This makes it easier to update dependency versions in one place, ensuring consistency across the project.
- * It also improves readability and maintainability of our build scripts.
- * **/
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
-    id("kotlin-kapt") // replacing this id whit alias will crash because this plugin doesn't have a version
+    id("kotlin-kapt")
     alias(libs.plugins.hilt)
-    id("androidx.navigation.safeargs.kotlin") // replacing this id whit alias will crash because this plugin doesn" t have a version
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

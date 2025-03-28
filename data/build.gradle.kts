@@ -1,8 +1,3 @@
-/**
- * Using a version catalog allows us to centralize dependency management.
- * This makes it easier to update dependency versions in one place, ensuring consistency across the project.
- * It also improves readability and maintainability of our build scripts.
- * **/
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
@@ -28,6 +23,19 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "BASE_URL", "\"https://data.fixer.io/api/\"")
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://data.fixer.io/api/\"")
+        }
+    }
+    buildFeatures {
+        buildConfig = true
+        prefab = true
+    }
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
         }
     }
     compileOptions {

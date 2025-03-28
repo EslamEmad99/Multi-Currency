@@ -6,6 +6,7 @@ import com.example.data.remote.util.ApiExceptions
 import com.example.data.remote.util.RemoteExchangeRateMapper
 import com.example.data.remote.util.safeApiCall
 import com.example.data.util.Constants.CURRENCY_APP_DATE_FORMAT_PATTERN
+import com.example.data.util.Secrets
 import com.example.domain.model.ExchangeRate
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -14,13 +15,12 @@ import java.util.TimeZone
 import javax.inject.Inject
 
 class CurrencyRemoteDataSourceImpl @Inject constructor(
-    private val apiService: CurrencyApiService,
-    private val accessKey: String
+    private val apiService: CurrencyApiService
 ) : CurrencyRemoteDataSource {
 
     override suspend fun getExchangeRates(): Result<List<ExchangeRate>> {
         return safeApiCall {
-            apiService.getExchangeRates(accessKey = accessKey)
+            apiService.getExchangeRates(accessKey = Secrets.getApiKey())
         }.mapCatching { responseDto ->
             if (!responseDto.success) throw ApiExceptions.EmptyResponseException
 
@@ -36,7 +36,7 @@ class CurrencyRemoteDataSourceImpl @Inject constructor(
         val date = convertTimestampToDate(todayTimeStamp)
 
         return safeApiCall {
-            apiService.getHistoricalRates(date, from, to, accessKey)
+            apiService.getHistoricalRates(date, from, to, Secrets.getApiKey())
         }.mapCatching { responseDto ->
             if (!responseDto.success) return Result.failure(ApiExceptions.EmptyResponseException)
 
