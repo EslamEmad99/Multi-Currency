@@ -6,4 +6,10 @@
     <string name="enter_amount">Enter amount</string>
     <string name="converted_value">Converted Value</string>
     <string name="please_select_from_to_currencies_first">Please select From/To currencies first</string>
+    <string name="please_recheck_your_connection">Please recheck your connection</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="server_is_down">Server is down</string>
+    <string name="api_not_found">API not found</string>
+    <string name="token_expired">Token Expired</string>
+    <string name="there_s_no_data">There\'s no data</string>
 </resources>

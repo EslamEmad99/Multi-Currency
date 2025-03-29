@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.data.remote.util.ApiExceptions
 import com.example.domain.exceptions.ConvertCurrencyExceptions
 import com.example.multicurrency.R
 import com.example.multicurrency.changecurrency.model.ExchangeRateUiModel
@@ -139,6 +140,29 @@ class ChangeCurrencyFragment : Fragment() {
                 binding.convertedAmountEditText.text = null
             }
 
+            is ApiExceptions.EmptyResponseException -> {
+                showToast(getString(R.string.there_s_no_data))
+            }
+
+            is ApiExceptions.UnauthorizedException -> {
+                showToast(getString(R.string.token_expired))
+            }
+
+            is ApiExceptions.NotFoundException -> {
+                showToast(getString(R.string.api_not_found))
+            }
+
+            is ApiExceptions.ServerErrorException -> {
+                showToast(getString(R.string.server_is_down))
+            }
+
+            is ApiExceptions.UnknownErrorException -> {
+                showToast(getString(R.string.something_went_wrong))
+            }
+
+            is ApiExceptions.NetworkException -> {
+                showToast(getString(R.string.please_recheck_your_connection))
+            }
         }
     }
 

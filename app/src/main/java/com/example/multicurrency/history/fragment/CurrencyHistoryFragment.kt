@@ -10,12 +10,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import com.example.data.remote.util.ApiExceptions
+import com.example.multicurrency.R
 import com.example.multicurrency.databinding.FragmentCurrencyHistoryBinding
 import com.example.multicurrency.history.adapter.CurrencyHistoryAdapter
 import com.example.multicurrency.history.model.ExchangeRateHistoryUIModel
 import com.example.multicurrency.history.viewmodel.CurrencyHistoryViewModel
 import com.example.multicurrency.history.viewstate.GetExchangeRateHistoryViewState
 import com.example.multicurrency.util.ProgressUtil
+import com.example.multicurrency.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -90,7 +93,29 @@ class CurrencyHistoryFragment : Fragment() {
 
     private fun handleException(exception: Exception) {
         when (exception) {
+            is ApiExceptions.EmptyResponseException -> {
+                showToast(getString(R.string.there_s_no_data))
+            }
 
+            is ApiExceptions.UnauthorizedException -> {
+                showToast(getString(R.string.token_expired))
+            }
+
+            is ApiExceptions.NotFoundException -> {
+                showToast(getString(R.string.api_not_found))
+            }
+
+            is ApiExceptions.ServerErrorException -> {
+                showToast(getString(R.string.server_is_down))
+            }
+
+            is ApiExceptions.UnknownErrorException -> {
+                showToast(getString(R.string.something_went_wrong))
+            }
+
+            is ApiExceptions.NetworkException -> {
+                showToast(getString(R.string.please_recheck_your_connection))
+            }
         }
     }
 
