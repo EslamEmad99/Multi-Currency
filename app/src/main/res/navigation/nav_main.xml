@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/changeCurrencyFragment"
-        android:name="com.example.multicurrency.changecurrency.ChangeCurrencyFragment"
+        android:name="com.example.multicurrency.changecurrency.fragment.ChangeCurrencyFragment"
         android:label="fragment_change_currency"
         tools:layout="@layout/fragment_change_currency">
         <action
