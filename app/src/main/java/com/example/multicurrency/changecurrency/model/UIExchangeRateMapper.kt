@@ -4,7 +4,7 @@ import com.example.domain.model.ExchangeRate
 
 object UIExchangeRateMapper {
 
-    fun mapToUiModel(domainModel: ExchangeRate): ExchangeRateUiModel {
+    private fun mapToUiModel(domainModel: ExchangeRate): ExchangeRateUiModel {
         return ExchangeRateUiModel(
             currencyName = domainModel.targetCurrency,
             rate = domainModel.rate

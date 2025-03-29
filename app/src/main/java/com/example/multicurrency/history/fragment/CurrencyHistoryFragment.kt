@@ -1,4 +1,4 @@
-package com.example.multicurrency.history
+package com.example.multicurrency.history.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

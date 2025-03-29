@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/currencyHistoryFragment"
-        android:name="com.example.multicurrency.history.CurrencyHistoryFragment"
+        android:name="com.example.multicurrency.history.fragment.CurrencyHistoryFragment"
         android:label="fragment_currency_history"
         tools:layout="@layout/fragment_currency_history">
         <argument
