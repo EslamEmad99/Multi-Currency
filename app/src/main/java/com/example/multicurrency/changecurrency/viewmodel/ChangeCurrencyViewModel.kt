@@ -2,6 +2,7 @@ package com.example.multicurrency.changecurrency.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.exceptions.ConvertCurrencyExceptions
 import com.example.domain.usecase.ConvertCurrencyUseCase
 import com.example.domain.usecase.GetExchangeRatesUseCase
 import com.example.multicurrency.changecurrency.model.ExchangeRateUiModel
@@ -46,7 +47,8 @@ class ChangeCurrencyViewModel @Inject constructor(
 
     fun convertCurrency(amount: Double) {
         if (fromCurrency == null || toCurrency == null) {
-            return
+            _convertedValue.value =
+                ConvertCurrencyViewState.Error(ConvertCurrencyExceptions.InvalidExchangeRateException)
         } else {
             viewModelScope.launch {
                 val convertedAmount = convertCurrencyUseCase(

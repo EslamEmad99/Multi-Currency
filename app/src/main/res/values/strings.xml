@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Multi Currency</string>
+    <string name="view_exchange_history"><u>View Exchange History</u></string>
+    <string name="from_currency">From</string>
+    <string name="to_currency">To</string>
+    <string name="enter_amount">Enter amount</string>
+    <string name="converted_value">Converted Value</string>
+    <string name="please_select_from_to_currencies_first">Please select From/To currencies first</string>
 </resources>

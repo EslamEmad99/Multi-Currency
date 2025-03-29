@@ -1,11 +1,11 @@
 package com.example.data.remote.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class ExchangeRatesResponse(
-    @SerializedName("success") val success: Boolean,
-    @SerializedName("timestamp") val timestamp: Long,
-    @SerializedName("base") val baseCurrency: String,
-    @SerializedName("date") val date: String,
-    @SerializedName("rates") val rates: Map<String, Double>
+    @Json(name = "success") val success: Boolean,
+    @Json(name = "timestamp") val timestamp: Long,
+    @Json(name = "base") val baseCurrency: String,
+    @Json(name = "date") val date: String,
+    @Json(name = "rates") val rates: Map<String, Double>
 )

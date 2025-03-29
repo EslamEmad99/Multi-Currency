@@ -8,7 +8,7 @@ object CurrencyRemoteEndPointsParameters {
     const val ACCESS_KEY = "access_key"
     const val DATE = "date"
     const val BASE = "base"
-    const val SYMBOLS = "access_key"
+    const val SYMBOLS = "symbols"
     const val EUR = "EUR"
     private const val USD = "USD"
     private const val EGP = "EGP"
