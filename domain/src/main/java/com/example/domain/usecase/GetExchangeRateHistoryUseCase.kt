@@ -1,8 +1,9 @@
 package com.example.domain.usecase
 
 import com.example.domain.repository.CurrencyRepository
+import javax.inject.Inject
 
-class GetExchangeRateHistoryUseCase(
+class GetExchangeRateHistoryUseCase @Inject constructor(
     private val repository: CurrencyRepository
 ) {
 

@@ -30,5 +30,8 @@
         <argument
             android:name="to"
             app:argType="string" />
+        <argument
+            android:name="amount"
+            app:argType="float" />
     </fragment>
 </navigation>

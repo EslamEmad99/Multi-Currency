@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,6 +21,7 @@ import com.example.multicurrency.changecurrency.viewstate.ConvertCurrencyViewSta
 import com.example.multicurrency.changecurrency.viewstate.ExchangeRateViewState
 import com.example.multicurrency.databinding.FragmentChangeCurrencyBinding
 import com.example.multicurrency.util.ProgressUtil
+import com.example.multicurrency.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -52,7 +52,7 @@ class ChangeCurrencyFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentChangeCurrencyBinding.inflate(inflater, container, false)
         initGetExchangeRatesObserver()
         initConvertCurrencyObserver()
@@ -187,6 +187,7 @@ class ChangeCurrencyFragment : Fragment() {
     private fun navigateToCurrencyHistoryFragment() {
         val from = viewModel.fromCurrency
         val to = viewModel.toCurrency
+        val amount = binding.amountEditText.text.toString().toFloatOrNull()
 
         if (from == null || to == null) {
             showToast(getString(R.string.please_select_from_to_currencies_first))
@@ -194,13 +195,10 @@ class ChangeCurrencyFragment : Fragment() {
             val action =
                 ChangeCurrencyFragmentDirections.actionChangeCurrencyFragmentToCurrencyHistoryFragment(
                     from = from.currencyName,
-                    to = to.currencyName
+                    to = to.currencyName,
+                    amount = amount ?: 1f
                 )
             findNavController().navigate(action)
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 }

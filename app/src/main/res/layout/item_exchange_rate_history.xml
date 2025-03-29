@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="exchangeRate"
+            type="com.example.multicurrency.history.model.ExchangeRateHistoryUIModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingTop="@dimen/_12sdp">
+
+        <TextView
+            android:id="@+id/textViewExchangeRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:exchangeRateText="@{exchangeRate}"
+            android:textAlignment="viewStart"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

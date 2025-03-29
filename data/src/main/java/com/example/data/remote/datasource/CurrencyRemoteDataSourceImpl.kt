@@ -36,7 +36,10 @@ class CurrencyRemoteDataSourceImpl @Inject constructor(
         val date = convertTimestampToDate(todayTimeStamp)
 
         return safeApiCall {
-            apiService.getHistoricalRates(date, from, to, Secrets.getApiKey())
+            apiService.getHistoricalRates(
+                date = date,
+                accessKey = Secrets.getApiKey()
+            )
         }.mapCatching { responseDto ->
             if (!responseDto.success) return Result.failure(ApiExceptions.EmptyResponseException)
 
