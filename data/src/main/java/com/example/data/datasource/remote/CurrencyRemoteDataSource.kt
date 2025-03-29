@@ -7,7 +7,7 @@ interface CurrencyRemoteDataSource {
     suspend fun getExchangeRates(): Result<List<ExchangeRate>>
 
     suspend fun getExchangeRateHistoryFromRemote(
-        todayTimeStamp: Long,
+        date: String,
         from: String,
         to: String
     ): Result<ExchangeRate>

@@ -5,13 +5,8 @@ import com.example.data.remote.endpoints.CurrencyApiService
 import com.example.data.remote.util.ApiExceptions
 import com.example.data.remote.util.RemoteExchangeRateMapper
 import com.example.data.remote.util.safeApiCall
-import com.example.data.util.Constants.CURRENCY_APP_DATE_FORMAT_PATTERN
 import com.example.data.util.Secrets
 import com.example.domain.model.ExchangeRate
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 import javax.inject.Inject
 
 class CurrencyRemoteDataSourceImpl @Inject constructor(
@@ -29,11 +24,10 @@ class CurrencyRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getExchangeRateHistoryFromRemote(
-        todayTimeStamp: Long,
+        date: String,
         from: String,
         to: String
     ): Result<ExchangeRate> {
-        val date = convertTimestampToDate(todayTimeStamp)
 
         return safeApiCall {
             apiService.getHistoricalRates(
@@ -45,11 +39,5 @@ class CurrencyRemoteDataSourceImpl @Inject constructor(
 
             RemoteExchangeRateMapper.mapFromDto(responseDto, from, to)
         }
-    }
-
-    private fun convertTimestampToDate(timestamp: Long): String {
-        val sdf = SimpleDateFormat(CURRENCY_APP_DATE_FORMAT_PATTERN, Locale.getDefault())
-        sdf.timeZone = TimeZone.getTimeZone("UTC")
-        return sdf.format(Date(timestamp * 1000))
     }
 }
