@@ -17,7 +17,10 @@
  
 ## 📸 Screenshots  
  
-🚀 **(Add screenshots here)**  
+| Screenshot 1 | Screenshot 2 |
+|--------------|--------------|
+| ![Screenshot 1](Screenshots/1.jfif) | ![Screenshot 1](Screenshots/2.jfif) |
+| ![Screenshot 1](Screenshots/3.jfif) | 
  
 ---  
  
