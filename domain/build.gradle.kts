@@ -34,4 +34,6 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.junit)
     implementation(libs.kotlin.stdlib)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.truth)
 }
